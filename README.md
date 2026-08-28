@@ -44,7 +44,7 @@ pip install llama_cpp_python-0.3.35-py3-none-win_amd64.whl
 | **MiniMax 提示词增强** | 一张图 / 一句话 → 完整 **MiniMax H3 提示词**。模式：图生视频（接图看图写，参考图用途=场景参考/人物参考）/ 文生视频 / 续段；不接图即纯文本 |
 | **SuperMate 图片反推** | 图片 → 详细描述提示词（自动缩放到 1024，约 13 倍提速；含画面比例） |
 | **SuperMate Text Gen** | 通用文本生成（口播文案 / 翻译 / 总结） |
-| **SuperMate LLM Unload** | 释放显存 |
+| **SuperMate LLM Unload** | 释放显存。接在工作流链尾（提示词/text 输出 → 输入）即 LLM 用后自动卸载；也可独立放在 H3 工作流开头，执行时先卸载残留 LLM 再生成 |
 
 模型放法：GGUF 文件（如 `Qwen3.8-27B-UD-IQ3_XXS.gguf` + 视觉 `mmproj-BF16.gguf`）
 放入 `ComfyUI/models/LLM/` 即可。

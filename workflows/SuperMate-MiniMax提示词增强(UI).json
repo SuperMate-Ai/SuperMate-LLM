@@ -1,0 +1,359 @@
+{
+  "id": "supermate-SuperMate-MiniMax提示词增强(UI).json",
+  "revision": 0,
+  "last_node_id": 5,
+  "last_link_id": 4,
+  "nodes": [
+    {
+      "id": 1,
+      "type": "LoadImage",
+      "pos": [
+        420,
+        40
+      ],
+      "size": [
+        300,
+        90
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "COMBO",
+          "widget": {
+            "name": "image"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "label": "IMAGE",
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": []
+        },
+        {
+          "label": "MASK",
+          "name": "MASK",
+          "type": "MASK",
+          "links": []
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage",
+        "widget_ue_connectable": {},
+        "input_ue_unconnectable": {}
+      },
+      "widgets_values": [
+        "不同背景的天宫图.png"
+      ]
+    },
+    {
+      "id": 2,
+      "type": "SuperMateLLMLoader",
+      "pos": [
+        800,
+        40
+      ],
+      "size": [
+        300,
+        90
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "COMBO",
+          "widget": {
+            "name": "model"
+          }
+        },
+        {
+          "name": "n_gpu_layers",
+          "type": "INT",
+          "widget": {
+            "name": "n_gpu_layers"
+          }
+        },
+        {
+          "name": "n_ctx",
+          "type": "INT",
+          "widget": {
+            "name": "n_ctx"
+          }
+        },
+        {
+          "name": "mmproj",
+          "type": "COMBO",
+          "widget": {
+            "name": "mmproj"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "label": "模型",
+          "name": "模型",
+          "type": "LLM_MODEL",
+          "links": []
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SuperMateLLMLoader",
+        "widget_ue_connectable": {},
+        "input_ue_unconnectable": {}
+      },
+      "widgets_values": [
+        "Qwen3.8-27B-UD-IQ3_XXS.gguf",
+        -1,
+        8192,
+        "Qwen3.8-27B-mmproj-BF16.gguf"
+      ]
+    },
+    {
+      "id": 3,
+      "type": "SuperMateMiniMaxPrompt",
+      "pos": [
+        1180,
+        40
+      ],
+      "size": [
+        300,
+        90
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "模型",
+          "type": "LLM_MODEL",
+          "link": 1
+        },
+        {
+          "name": "模式",
+          "type": "COMBO",
+          "widget": {
+            "name": "模式"
+          }
+        },
+        {
+          "name": "需求",
+          "type": "STRING",
+          "widget": {
+            "name": "需求"
+          }
+        },
+        {
+          "name": "参考图用途",
+          "type": "COMBO",
+          "widget": {
+            "name": "参考图用途"
+          }
+        },
+        {
+          "name": "显示比例",
+          "type": "COMBO",
+          "widget": {
+            "name": "显示比例"
+          }
+        },
+        {
+          "name": "时长",
+          "type": "INT",
+          "widget": {
+            "name": "时长"
+          }
+        },
+        {
+          "name": "最大边长",
+          "type": "INT",
+          "widget": {
+            "name": "最大边长"
+          }
+        },
+        {
+          "name": "文本长度",
+          "type": "INT",
+          "widget": {
+            "name": "文本长度"
+          }
+        },
+        {
+          "name": "图片",
+          "type": "IMAGE",
+          "link": 2
+        },
+        {
+          "name": "额外约束",
+          "type": "STRING",
+          "widget": {
+            "name": "额外约束"
+          }
+        },
+        {
+          "name": "上一段内容",
+          "type": "STRING",
+          "widget": {
+            "name": "上一段内容"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "label": "text",
+          "name": "text",
+          "type": "STRING",
+          "links": [
+            3,
+            4
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SuperMateMiniMaxPrompt",
+        "widget_ue_connectable": {},
+        "input_ue_unconnectable": {}
+      },
+      "widgets_values": [
+        "图生视频",
+        "根据图片内容，为我设计一段vlog视频",
+        "场景参考",
+        "保持原图",
+        10,
+        1024,
+        2500,
+        "",
+        ""
+      ]
+    },
+    {
+      "id": 4,
+      "type": "ShowText|pysssss",
+      "pos": [
+        40,
+        210
+      ],
+      "size": [
+        300,
+        90
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "text",
+          "type": "STRING",
+          "link": 3
+        }
+      ],
+      "outputs": [
+        {
+          "label": "STRING",
+          "name": "STRING",
+          "type": "STRING",
+          "links": []
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ShowText|pysssss",
+        "widget_ue_connectable": {},
+        "input_ue_unconnectable": {}
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 5,
+      "type": "SuperMateLLMUnload",
+      "pos": [
+        1500,
+        160
+      ],
+      "size": [
+        300,
+        90
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "输入",
+          "type": "*",
+          "link": 4
+        }
+      ],
+      "outputs": [
+        {
+          "label": "输出",
+          "name": "输出",
+          "type": "*",
+          "links": []
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SuperMateLLMUnload",
+        "widget_ue_connectable": {},
+        "input_ue_unconnectable": {}
+      },
+      "widgets_values": []
+    }
+  ],
+  "links": [
+    [
+      1,
+      2,
+      0,
+      3,
+      0,
+      "LLM_MODEL"
+    ],
+    [
+      2,
+      1,
+      0,
+      3,
+      8,
+      "IMAGE"
+    ],
+    [
+      3,
+      3,
+      0,
+      4,
+      0,
+      "STRING"
+    ],
+    [
+      4,
+      3,
+      0,
+      5,
+      0,
+      "*"
+    ]
+  ],
+  "groups": [
+    {
+      "id": 1,
+      "title": "📌 用法说明\n接图片 + 模式=图生视频 → 看图写 H3 提示词\n  参考图用途：场景参考 / 人物参考\n不接图片 → 纯文本：文生视频 / 图生视频 / 续段\n结果在预览区，复制到 H3 提示词输入即可\n⚠ 一次只跑一个工作流；Loader 需选 mmproj 视觉模型",
+      "bounding": [
+        40,
+        -220,
+        1500,
+        210
+      ],
+      "color": "#1F5C8B",
+      "font_size": 22,
+      "flags": {}
+    }
+  ],
+  "config": {},
+  "extra": {},
+  "version": 0.4
+}

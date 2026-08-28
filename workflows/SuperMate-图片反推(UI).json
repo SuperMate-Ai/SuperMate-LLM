@@ -1,0 +1,319 @@
+{
+  "id": "supermate-SuperMate-图片反推(UI).json",
+  "revision": 0,
+  "last_node_id": 5,
+  "last_link_id": 4,
+  "nodes": [
+    {
+      "id": 1,
+      "type": "LoadImage",
+      "pos": [
+        420,
+        40
+      ],
+      "size": [
+        300,
+        90
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "COMBO",
+          "widget": {
+            "name": "image"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "label": "IMAGE",
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": []
+        },
+        {
+          "label": "MASK",
+          "name": "MASK",
+          "type": "MASK",
+          "links": []
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage",
+        "widget_ue_connectable": {},
+        "input_ue_unconnectable": {}
+      },
+      "widgets_values": [
+        "不同背景的天宫图.png"
+      ]
+    },
+    {
+      "id": 2,
+      "type": "SuperMateLLMLoader",
+      "pos": [
+        800,
+        40
+      ],
+      "size": [
+        300,
+        90
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "COMBO",
+          "widget": {
+            "name": "model"
+          }
+        },
+        {
+          "name": "n_gpu_layers",
+          "type": "INT",
+          "widget": {
+            "name": "n_gpu_layers"
+          }
+        },
+        {
+          "name": "n_ctx",
+          "type": "INT",
+          "widget": {
+            "name": "n_ctx"
+          }
+        },
+        {
+          "name": "mmproj",
+          "type": "COMBO",
+          "widget": {
+            "name": "mmproj"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "label": "模型",
+          "name": "模型",
+          "type": "LLM_MODEL",
+          "links": []
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SuperMateLLMLoader",
+        "widget_ue_connectable": {},
+        "input_ue_unconnectable": {}
+      },
+      "widgets_values": [
+        "Qwen3.8-27B-UD-IQ3_XXS.gguf",
+        -1,
+        8192,
+        "Qwen3.8-27B-mmproj-BF16.gguf"
+      ]
+    },
+    {
+      "id": 3,
+      "type": "SuperMateImageToPrompt",
+      "pos": [
+        1180,
+        40
+      ],
+      "size": [
+        300,
+        90
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "模型",
+          "type": "LLM_MODEL",
+          "link": 1
+        },
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "link": 2
+        },
+        {
+          "name": "描述要求",
+          "type": "STRING",
+          "widget": {
+            "name": "描述要求"
+          }
+        },
+        {
+          "name": "显示比例",
+          "type": "COMBO",
+          "widget": {
+            "name": "显示比例"
+          }
+        },
+        {
+          "name": "文本长度",
+          "type": "INT",
+          "widget": {
+            "name": "文本长度"
+          }
+        },
+        {
+          "name": "最大边长",
+          "type": "INT",
+          "widget": {
+            "name": "最大边长"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "label": "text",
+          "name": "text",
+          "type": "STRING",
+          "links": [
+            3,
+            4
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SuperMateImageToPrompt",
+        "widget_ue_connectable": {},
+        "input_ue_unconnectable": {}
+      },
+      "widgets_values": [
+        "请用中文详细描述这张图片：主体人物、服装外貌、场景环境、画风质感、构图、光线色调。描述要具体、适合作为AI绘画/视频生成的提示词。",
+        "保持原图",
+        1024,
+        1024
+      ]
+    },
+    {
+      "id": 4,
+      "type": "ShowText|pysssss",
+      "pos": [
+        40,
+        210
+      ],
+      "size": [
+        300,
+        90
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "text",
+          "type": "STRING",
+          "link": 3
+        }
+      ],
+      "outputs": [
+        {
+          "label": "STRING",
+          "name": "STRING",
+          "type": "STRING",
+          "links": []
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ShowText|pysssss",
+        "widget_ue_connectable": {},
+        "input_ue_unconnectable": {}
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 5,
+      "type": "SuperMateLLMUnload",
+      "pos": [
+        1500,
+        160
+      ],
+      "size": [
+        300,
+        90
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "输入",
+          "type": "*",
+          "link": 4
+        }
+      ],
+      "outputs": [
+        {
+          "label": "输出",
+          "name": "输出",
+          "type": "*",
+          "links": []
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SuperMateLLMUnload",
+        "widget_ue_connectable": {},
+        "input_ue_unconnectable": {}
+      },
+      "widgets_values": []
+    }
+  ],
+  "links": [
+    [
+      1,
+      2,
+      0,
+      3,
+      0,
+      "LLM_MODEL"
+    ],
+    [
+      2,
+      1,
+      0,
+      3,
+      1,
+      "IMAGE"
+    ],
+    [
+      3,
+      3,
+      0,
+      4,
+      0,
+      "STRING"
+    ],
+    [
+      4,
+      3,
+      0,
+      5,
+      0,
+      "*"
+    ]
+  ],
+  "groups": [
+    {
+      "id": 1,
+      "title": "📌 用法说明\n1. LoadImage 选择一张图片\n2. Loader 保持默认（已选视觉模型 mmproj）\n3. 点击运行 → 下方预览区输出详细描述（含画面比例）\n⚠ 一次只跑一个工作流（Qwen3.8 约 13GB 显存）",
+      "bounding": [
+        40,
+        -220,
+        1500,
+        210
+      ],
+      "color": "#1F5C8B",
+      "font_size": 22,
+      "flags": {}
+    }
+  ],
+  "config": {},
+  "extra": {},
+  "version": 0.4
+}
