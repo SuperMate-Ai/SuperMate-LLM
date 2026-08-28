@@ -17,6 +17,8 @@
 
 > Release 总览页：https://github.com/SuperMate-Ai/SuperMate-LLM/releases/tag/v0.3.35
 > 轮子体积大（631MB），GitHub 仓库页面不显示 git 文件，全部发布物都在上面的 Release 链接里。
+>
+> **版本号说明**：`v0.3.35` 沿用 llama-cpp-python 轮子的版本号（本次发布物只有这一版，未单独立项目版本号）；后续项目更新（工作流/节点包改动）时将改用 SuperMate-LLM 独立版本号（如 v1.0.0、v1.0.1…），与 llama-cpp-python 解耦。
 
 ---
 
