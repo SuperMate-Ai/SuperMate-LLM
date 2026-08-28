@@ -58,6 +58,10 @@ pip install llama_cpp_python-0.3.35-py3-none-win_amd64.whl
 | **SuperMate-MiniMax提示词增强(UI).json** | 传图 + 填需求（如"根据图片内容设计一段vlog视频"）→ 约 1 分钟出完整 H3 提示词（分镜/转场/比例/时长）；不接图（断开 LoadImage 连线）即纯文本，可切换 文生视频/图生视频/续段 |
 | **SuperMate-图片反推(UI).json** | 传图 → 反推详细描述 → 预览。约 35 秒 |
 
+> **GitHub Release 资产名说明**：受 GitHub 平台限制（资产名仅支持 ASCII），Release 里的工作流文件名为
+> `SuperMate-MiniMaxPrompt-UI.json`（= 提示词增强）与 `SuperMate-ImageToPrompt-UI.json`（= 图片反推）；
+> 内容与上方中文名一致，下载后可直接放入 `ComfyUI/user/default/workflows/SuperMate/`。
+
 注意事项：**一次只跑一个工作流**（Qwen3.8 27B 含视觉约 13GB 显存，16GB 卡需留余量）；输出在只读文本区，可一键复制。
 
 ## 自编译复现参数
