@@ -5,6 +5,21 @@
 
 ---
 
+## 📥 下载（GitHub Release）
+
+| 文件 | 说明 | 直链 |
+|---|---|---|
+| `llama_cpp_python-0.3.35-py3-none-win_amd64.whl`（631 MB） | **便携轮子（主文件）**：无 AVX-512 要求、捆绑 CUDA 13、RTX 20~50 系可用 | [下载](https://github.com/SuperMate-Ai/SuperMate-LLM/releases/download/v0.3.35/llama_cpp_python-0.3.35-py3-none-win_amd64.whl) |
+| `ComfyUI_SuperMate-LLM-Nodes.zip` | **节点包**：5 个节点（Loader / MiniMax 提示词增强 / 图片反推 / Text Gen / Unload） | [下载](https://github.com/SuperMate-Ai/SuperMate-LLM/releases/download/v0.3.35/ComfyUI_SuperMate-LLM-Nodes.zip) |
+| `SuperMate-MiniMaxPrompt-UI.json` | 工作流：MiniMax 提示词增强（含 Unload 自动卸载） | [下载](https://github.com/SuperMate-Ai/SuperMate-LLM/releases/download/v0.3.35/SuperMate-MiniMaxPrompt-UI.json) |
+| `SuperMate-ImageToPrompt-UI.json` | 工作流：图片反推（含 Unload 自动卸载） | [下载](https://github.com/SuperMate-Ai/SuperMate-LLM/releases/download/v0.3.35/SuperMate-ImageToPrompt-UI.json) |
+| `README.md` | 使用说明 | [下载](https://github.com/SuperMate-Ai/SuperMate-LLM/releases/download/v0.3.35/README.md) |
+
+> Release 总览页：https://github.com/SuperMate-Ai/SuperMate-LLM/releases/tag/v0.3.35
+> 轮子体积大（631MB），GitHub 仓库页面不显示 git 文件，全部发布物都在上面的 Release 链接里。
+
+---
+
 ## 解决了什么问题
 
 官方 abetlen 轮子（cu124 / cu130 等）以 **AVX-512 指令集编译**。在不支持 AVX-512 的 CPU（如
