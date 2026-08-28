@@ -59,6 +59,7 @@ pip install llama_cpp_python-0.3.35-py3-none-win_amd64.whl
 |---|---|
 | **SuperMate LLM Loader** | 加载 `models/LLM/` 下的 GGUF（Qwen3.8 等），`n_gpu_layers=-1` 全量进 GPU；选 `mmproj` 启用视觉 |
 | **MiniMax 提示词增强** | 一张图 / 一句话 → 完整 **MiniMax H3 提示词**。模式：图生视频（接图看图写，参考图用途=场景参考/人物参考）/ 文生视频 / 续段；不接图即纯文本 |
+| **MiniMax 提示词增强（多图）** | **最多 5 张参考图**（人物多角度/背景/灯光）+ **视频抽帧** → 多图综合写 H3 提示词（MiniMax 支持 9 图参考，常用 4 图：人物2+背景1+灯光1）；单图版保留 |
 | **SuperMate 图片反推** | 图片 → 详细描述提示词（自动缩放到 1024，约 13 倍提速；含画面比例） |
 | **SuperMate Text Gen** | 通用文本生成（口播文案 / 翻译 / 总结） |
 | **SuperMate LLM Unload** | 释放显存。接在工作流链尾（提示词/text 输出 → 输入）即 LLM 用后自动卸载；也可独立放在 H3 工作流开头，执行时先卸载残留 LLM 再生成 |
@@ -73,10 +74,11 @@ pip install llama_cpp_python-0.3.35-py3-none-win_amd64.whl
 | 工作流 | 用法 |
 |---|---|
 | **SuperMate-MiniMax提示词增强(UI).json** | 传图 + 填需求（如"根据图片内容设计一段vlog视频"）→ 约 1 分钟出完整 H3 提示词（分镜/转场/比例/时长）；不接图（断开 LoadImage 连线）即纯文本，可切换 文生视频/图生视频/续段 |
+| **SuperMate-多图提示词增强(UI).json** | **多图版**：图片1=主参考 + 图片2~4=补充（人物角度/背景/灯光）→ 多图综合写 H3 提示词；附 3 个 LoadImage 入口 + 视频文件（可选） |
 | **SuperMate-图片反推(UI).json** | 传图 → 反推详细描述 → 预览。约 35 秒 |
 
 > **GitHub Release 资产名说明**：受 GitHub 平台限制（资产名仅支持 ASCII），Release 里的工作流文件名为
-> `SuperMate-MiniMaxPrompt-UI.json`（= 提示词增强）与 `SuperMate-ImageToPrompt-UI.json`（= 图片反推）；
+> `SuperMate-MiniMaxPrompt-UI.json`（= 提示词增强）、`SuperMate-MultiPrompt-UI.json`（= 多图提示词增强）与 `SuperMate-ImageToPrompt-UI.json`（= 图片反推）；
 > 内容与上方中文名一致，下载后可直接放入 `ComfyUI/user/default/workflows/SuperMate/`。
 
 注意事项：**一次只跑一个工作流**（Qwen3.8 27B 含视觉约 13GB 显存，16GB 卡需留余量）；输出在只读文本区，可一键复制。
